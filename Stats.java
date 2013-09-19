@@ -5,7 +5,7 @@ class Stats {
 	
 	public static void main(String[] args) {
 		Random n = new Random();
-		int [] a = new int [6];
+		int [] a = new int [3 + (int)(Math.random()*7)];
 		for (int i = 0; i < a.length; i++) {
 			a [i] = -50 + (int)(Math.random()*100); 
 		}
@@ -14,7 +14,7 @@ class Stats {
 		printArray(a);
 		System.out.println();
 		System.out.println("Test\n");
-		System.out.println(median(a));
+		System.out.println(upperQuartile(a));
 	// 	printArray(a);
 	}
 
@@ -74,9 +74,29 @@ class Stats {
 	public static double median(int[] a) {
 		double median = 0.0;
 		if (a.length % 2 == 0) {
-			median = (double)(((double)a[a.length/2 + 1] + (double)a[a.length/2 - 1]) / 2.0);
+			median = (((double)a[a.length/2] + (double)a[a.length/2 - 1]) / 2.0);
 		} else {
-			median = ((double)a[a.length/2]);
+			median = (a[a.length/2]);
+		}
+		return median;
+	}
+
+	public static double lowerQuartile(int[] a) {
+		double median = 0.0;
+		if (a.length % 2 == 0) {
+			median = ((double)a[a.length/4] + (double)a[a.length/4 - 1]) / 2.0;
+		} else {
+			median = a[a.length/4];
+		}
+		return median;
+	}
+
+	public static double upperQuartile(int[] a) {
+		double median = 0.0;
+		if (a.length % 2 == 0) {
+			median = ((double)a[a.length/4 + (a.length/2)] + (double)a[(a.length/4 - 1) + (a.length/2)]) / 2.0;
+		} else {
+			median = a[a.length/4 + (a.length/2)];
 		}
 		return median;
 	}
