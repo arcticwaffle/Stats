@@ -5,16 +5,17 @@ class Stats {
 	
 	public static void main(String[] args) {
 		Random n = new Random();
+		//int [] a = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4};
 		int [] a = new int [3 + (int)(Math.random()*7)];
 		for (int i = 0; i < a.length; i++) {
 			a [i] = -50 + (int)(Math.random()*100); 
 		}
-		Arrays.sort(a);
+		//Arrays.sort(a);
 		System.out.println("Original Array\n");
 		printArray(a);
 		System.out.println();
 		System.out.println("Test\n");
-		System.out.println(mode(a));
+		System.out.println(standardDeviation(a));
 	// 	printArray(a);
 	}
 
@@ -149,8 +150,25 @@ class Stats {
 		return mode;
 	}
 
-	public static int standardDeviation(int[] a) {
-		
+	public static double standardDeviation(int[] a) {
+		int u = 0;
+		int [] m = new int [a.length];
+		int sum = 0;
+		double standardDeviation = 0;
+		for (int i = 0; i < a.length; i++) {
+			u += a[i];
+		}
+		u /= a.length;
+		for (int i = 0; i < a.length; i++) {
+			m[i] = a[i] - u;
+			m[i] *= m[i];
+		}
+		for (int i = 0; i < a.length; i++) {
+			sum += m[i];
+		}
+		standardDeviation = sum / (double)a.length;
+		return Math.sqrt(standardDeviation);
+
 	}
 
 }
