@@ -14,7 +14,7 @@ class Stats {
 		printArray(a);
 		System.out.println();
 		System.out.println("Test\n");
-		System.out.println(upperQuartile(a));
+		System.out.println(mode(a));
 	// 	printArray(a);
 	}
 
@@ -83,22 +83,74 @@ class Stats {
 
 	public static double lowerQuartile(int[] a) {
 		double median = 0.0;
+		int oddLength = a.length + 1;
 		if (a.length % 2 == 0) {
-			median = ((double)a[a.length/4] + (double)a[a.length/4 - 1]) / 2.0;
+			if ((a.length/2) % 2 == 0) {
+				median = ((double)a[a.length/4] + (double)a[(a.length/4 - 1)]) / 2.0;
+			} else {
+				median = a[(oddLength/4)];
+			}
 		} else {
-			median = a[a.length/4];
+			if ((oddLength/2) % 2 == 0) {
+				median = ((double)a[oddLength/4] + (double)a[(oddLength/4 + 1)]) / 2.0;
+			} else {
+				median = a[((oddLength - 2)/4 - 1)] + a[(oddLength - 2)/4];
+			}
 		}
 		return median;
 	}
 
 	public static double upperQuartile(int[] a) {
 		double median = 0.0;
+		int oddLength = a.length - 1;
 		if (a.length % 2 == 0) {
-			median = ((double)a[a.length/4 + (a.length/2)] + (double)a[(a.length/4 - 1) + (a.length/2)]) / 2.0;
+			if ((a.length/2) % 2 == 0) {
+				median = ((double)a[a.length/4 + (a.length/2)] + (double)a[(a.length/4 - 1) + (a.length/2)]) / 2.0;
+			} else {
+				median = a[(oddLength/4) + (int)(oddLength/2 + 1)];
+			}
 		} else {
-			median = a[a.length/4 + (a.length/2)];
+			if ((oddLength/2) % 2 == 0) {
+				median = ((double)a[oddLength/4 + (oddLength/2)] + (double)a[(oddLength/4 + 1) + (oddLength/2)]) / 2.0;
+			} else {
+				median = (a[(oddLength/4) + (int)(oddLength/2 + 1)]) / 2.0;
+			}
 		}
+		// if ((a.length/2) % 2 == 0) {
+		// 	median = ((double)a[a.length/4 + (a.length/2)] + (double)a[(a.length/4 - 1) + (a.length/2)]) / 2.0;
+		// } else if ((a.length / 2) % 2 == 1 && a.length > 3) {
+		// 	median = a[((a.length - 1) / 2) + ((a.length - 1) / 4)];
+		// } else {
+		// 	median = a[(a.length/4) + (int)(a.length/2 + 1)];
+		// }
 		return median;
+	}
+
+	public static int mode(int[] a) {
+		int mode = a[0];
+		int countMode = 1;
+		int[] count = new int [a.length];
+		for (int i = 0; i < a.length; i++) {
+			count [i] = 0;
+		}
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < a.length; j++) {
+				if (a[i] == a[j]) {
+					count [i] += 1;
+				}
+			}
+		}
+		for (int i = 0; i < a.length; i++) {
+			if (count[i] > countMode) {
+				mode = a[i];
+				countMode = count[i];
+			}
+		}
+		return mode;
+	}
+
+	public static int standardDeviation(int[] a) {
+		
 	}
 
 }
