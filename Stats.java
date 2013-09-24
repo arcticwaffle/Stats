@@ -5,11 +5,11 @@ class Stats {
 	
 	public static void main(String[] args) {
 		Random n = new Random();
-		int [] a = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4};
-		// int [] a = new int [3 + (int)(Math.random()*7)];
-		// for (int i = 0; i < a.length; i++) {
-		// 	a [i] = -50 + (int)(Math.random()*100); 
-		// }
+		//int [] a = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4};
+		int [] a = new int [3 + (int)(Math.random()*7)];
+		for (int i = 0; i < a.length; i++) {
+			a [i] = -50 + (int)(Math.random()*100); 
+		}
 		int[] as = a;
 		Arrays.sort(as);
 		System.out.println("Original Array\n");
@@ -26,9 +26,9 @@ class Stats {
 		System.out.println("Median\n");
 		System.out.println(median(as));
 		System.out.println("Lower Quartile\n");
-		System.out.println(lowerQuartile(as));
+		System.out.println(quartile1(as));
 		System.out.println("Upper Quartile\n");
-		System.out.println(upperQuartile(as));
+		System.out.println(quartile3(as));
 		System.out.println("Mode\n");
 		System.out.println(mode(a));
 		System.out.println("Standard Deviation\n");
@@ -99,7 +99,7 @@ class Stats {
 		return median;
 	}
 
-	public static double lowerQuartile(int[] a) {
+	public static double quartile1(int[] a) {
 		double median = 0.0;
 		int oddLength = a.length + 1;
 		if (a.length % 2 == 0) {
@@ -118,7 +118,7 @@ class Stats {
 		return median;
 	}
 
-	public static double upperQuartile(int[] a) {
+	public static double quartile3(int[] a) {
 		double median = 0.0;
 		int oddLength = a.length - 1;
 		if (a.length % 2 == 0) {
