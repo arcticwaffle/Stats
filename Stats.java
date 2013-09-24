@@ -5,16 +5,33 @@ class Stats {
 	
 	public static void main(String[] args) {
 		Random n = new Random();
-		//int [] a = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4};
-		int [] a = new int [3 + (int)(Math.random()*7)];
-		for (int i = 0; i < a.length; i++) {
-			a [i] = -50 + (int)(Math.random()*100); 
-		}
-		//Arrays.sort(a);
+		int [] a = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4};
+		// int [] a = new int [3 + (int)(Math.random()*7)];
+		// for (int i = 0; i < a.length; i++) {
+		// 	a [i] = -50 + (int)(Math.random()*100); 
+		// }
+		int[] as = a;
+		Arrays.sort(as);
 		System.out.println("Original Array\n");
 		printArray(a);
 		System.out.println();
-		System.out.println("Test\n");
+		System.out.println("Max\n");
+		System.out.println(max(a));
+		System.out.println("Min\n");
+		System.out.println(min(a));
+		System.out.println("Mean\n");
+		System.out.println(mean(a));
+		System.out.println("Sorted Array\n");
+		printArray(as);
+		System.out.println("Median\n");
+		System.out.println(median(as));
+		System.out.println("Lower Quartile\n");
+		System.out.println(lowerQuartile(as));
+		System.out.println("Upper Quartile\n");
+		System.out.println(upperQuartile(as));
+		System.out.println("Mode\n");
+		System.out.println(mode(a));
+		System.out.println("Standard Deviation\n");
 		System.out.println(standardDeviation(a));
 	// 	printArray(a);
 	}
@@ -95,7 +112,7 @@ class Stats {
 			if ((oddLength/2) % 2 == 0) {
 				median = ((double)a[oddLength/4] + (double)a[(oddLength/4 + 1)]) / 2.0;
 			} else {
-				median = a[((oddLength - 2)/4 - 1)] + a[(oddLength - 2)/4];
+				median = (a[((oddLength - 2)/4 - 1)] + a[(oddLength - 2)/4]) / 2.0;
 			}
 		}
 		return median;
@@ -114,16 +131,9 @@ class Stats {
 			if ((oddLength/2) % 2 == 0) {
 				median = ((double)a[oddLength/4 + (oddLength/2)] + (double)a[(oddLength/4 + 1) + (oddLength/2)]) / 2.0;
 			} else {
-				median = (a[(oddLength/4) + (int)(oddLength/2 + 1)]) / 2.0;
+				median = (a[(oddLength/2) + (int)(oddLength/2 + 1)]) / 2.0;
 			}
 		}
-		// if ((a.length/2) % 2 == 0) {
-		// 	median = ((double)a[a.length/4 + (a.length/2)] + (double)a[(a.length/4 - 1) + (a.length/2)]) / 2.0;
-		// } else if ((a.length / 2) % 2 == 1 && a.length > 3) {
-		// 	median = a[((a.length - 1) / 2) + ((a.length - 1) / 4)];
-		// } else {
-		// 	median = a[(a.length/4) + (int)(a.length/2 + 1)];
-		// }
 		return median;
 	}
 
@@ -159,14 +169,16 @@ class Stats {
 			u += a[i];
 		}
 		u /= a.length;
+		System.out.println(u);
 		for (int i = 0; i < a.length; i++) {
 			m[i] = a[i] - u;
 			m[i] *= m[i];
-		}
-		for (int i = 0; i < a.length; i++) {
 			sum += m[i];
+
 		}
-		standardDeviation = sum / (double)a.length;
+		System.out.println(sum);
+		standardDeviation = sum / ((double)a.length - 1);
+		System.out.println(standardDeviation);
 		return Math.sqrt(standardDeviation);
 
 	}
