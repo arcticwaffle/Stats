@@ -14,7 +14,6 @@ class Stats {
 		Arrays.sort(as);
 		System.out.println("Original Array\n");
 		printArray(a);
-		System.out.println(1%2);
 		System.out.println();
 		System.out.println("Max\n");
 		System.out.println(max(a));
@@ -91,13 +90,13 @@ class Stats {
 	}
 
 	public static double median(int[] a) {
-		/*double median = 0.0;
+		double median = 0.0;
 		if (a.length % 2 == 0) {
 			median = (((double)a[a.length/2] + (double)a[a.length/2 - 1]) / 2.0);
 		} else {
 			median = (a[a.length/2]);
 		}
-		return median;*/
+		return median;
 	}
 
 	public static double quartile1(int[] a) {
