@@ -6,7 +6,7 @@ class Stats {
 	public static void main(String[] args) {
 		Random n = new Random();
 		//int [] a = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4};
-		int [] a = new int [3 + (int)(Math.random()*7)];
+		int [] a = new int [3/*3 + (int)(Math.random()*7)*/];
 		for (int i = 0; i < a.length; i++) {
 			a [i] = -50 + (int)(Math.random()*100); 
 		}
@@ -14,6 +14,7 @@ class Stats {
 		Arrays.sort(as);
 		System.out.println("Original Array\n");
 		printArray(a);
+		System.out.println(1%2);
 		System.out.println();
 		System.out.println("Max\n");
 		System.out.println(max(a));
@@ -90,13 +91,13 @@ class Stats {
 	}
 
 	public static double median(int[] a) {
-		double median = 0.0;
+		/*double median = 0.0;
 		if (a.length % 2 == 0) {
 			median = (((double)a[a.length/2] + (double)a[a.length/2 - 1]) / 2.0);
 		} else {
 			median = (a[a.length/2]);
 		}
-		return median;
+		return median;*/
 	}
 
 	public static double quartile1(int[] a) {
@@ -110,7 +111,7 @@ class Stats {
 			}
 		} else {
 			if ((oddLength/2) % 2 == 0) {
-				median = ((double)a[oddLength/4] + (double)a[(oddLength/4 + 1)]) / 2.0;
+				median = ((double)a[oddLength/4 - 1]/* + (double)a[(oddLength/4)]*/)/* / 2.0*/;
 			} else {
 				median = (a[((oddLength - 2)/4 - 1)] + a[(oddLength - 2)/4]) / 2.0;
 			}
@@ -131,7 +132,8 @@ class Stats {
 			if ((oddLength/2) % 2 == 0) {
 				median = ((double)a[oddLength/4 + (oddLength/2)] + (double)a[(oddLength/4 + 1) + (oddLength/2)]) / 2.0;
 			} else {
-				median = (a[(oddLength/2) + (int)(oddLength/2 + 1)]) / 2.0;
+				median = a[((oddLength - 2)/4 + ((a.length + 1) / 2))];
+				//median = (a[(oddLength/2) + (int)(oddLength/2 + 1)]) / 2.0;
 			}
 		}
 		return median;
@@ -169,16 +171,13 @@ class Stats {
 			u += a[i];
 		}
 		u /= a.length;
-		System.out.println(u);
 		for (int i = 0; i < a.length; i++) {
 			m[i] = a[i] - u;
 			m[i] *= m[i];
 			sum += m[i];
 
 		}
-		System.out.println(sum);
 		standardDeviation = sum / ((double)a.length - 1);
-		System.out.println(standardDeviation);
 		return Math.sqrt(standardDeviation);
 
 	}
